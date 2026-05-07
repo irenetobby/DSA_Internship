@@ -1,0 +1,88 @@
+/* General Page Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Main App Container */
+.container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+}
+
+h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Form Design */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #dcdfe6;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+}
+
+/* Prediction Button */
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Results Section */
+.result-box {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-left: 5px solid #2ecc71; /* Green for success results */
+    border-radius: 4px;
+}
+
+.result-box p {
+    margin: 10px 0;
+    line-height: 1.5;
+    color: #2c3e50;
+}
+
+/* Styling for the GenAI Suggestion Label */
+.result-box strong {
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 5px;
+}
