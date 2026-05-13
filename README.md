@@ -284,3 +284,62 @@ Install Scikit-learn for future prediction models:
 pip install scikit-learn
 Import:
 from sklearn.model_selection import train_test_splitfrom sklearn.preprocessing import StandardScalerfrom sklearn.linear_model import LinearRegression
+******FEATURE ENGINEERING**
+Features That Came from the Open Library API (Original)
+These five fields were pulled directly from the search results.
+
+Title: The name of the book. It was cleaned to remove gibberish, blank entries, or titles with question marks.
+
+Rating: The average user score for the book, on a scale from 3.0 to 5.0 stars. If the API missed a rating, a random score in that range was added.
+
+Pages: The total number of pages in the book. Any missing values were filled with a random number between 80 and 900 pages.
+
+Reviews: The total count of user ratings the book received. Missing values were filled with a random number between 20 and 2,500.
+
+Subject: The main topic tag from the API (for example, "Indian history" or "Tamil literature"). This was used to determine the book's genre.
+
+The Feature That Was Transformed (Mapped)
+This column was not created from nothing, but it was also not directly taken from the API. It was mapped from existing data.
+
+Genre: This is the category of the book, such as Fiction, History, Biography, Religion, Politics, Poetry, Philosophy, Science, Classic, or Self-Help.
+
+How it was made: The code looked at the Subject field and searched for keywords. If the subject contained "history," the genre became History. If it contained "fiction," it became Fiction. If no keywords matched, the script randomly picked a genre from the list.
+
+Why it matters: Different genres have different audience sizes and popularity patterns.
+
+The Features That Were Fully Engineered (Created from Scratch or Formulas)
+These five columns did not come from the API. They were calculated or randomly generated to make the dataset useful for predicting popularity.
+
+Price: The cost of the book in Indian Rupees.
+
+How it was made: The Open Library API does not provide price information, so the script randomly generates a price between ₹100 and ₹1,500 for every book.
+
+Why it matters: This allows you to study whether cheaper books are more popular than expensive ones, or if price has no effect at all.
+
+Review Density: A measure of how much discussion a book gets per page.
+
+How it was made: It is calculated by dividing the number of Reviews by the number of Pages.
+
+Why it matters: A short book with 1,000 reviews is much more "dense" and engaging than a long book with the same 1,000 reviews. Higher density often means higher popularity.
+
+Price Bucket: A simple category that describes the price range.
+
+How it was made: The continuous Price number is cut into three bins: Budget (₹100–₹400), Mid-range (₹401–₹900), and Premium (₹901–₹1,500).
+
+Why it matters: It is easier for a business to compare "Budget vs. Premium" than to compare every possible price.
+
+Popularity Score: A single combined score that represents overall popularity.
+
+How it was made: This is a weighted formula:
+
+65% of the score comes from the Rating (quality matters more).
+
+35% comes from the log of Reviews (using a logarithm prevents books with 2,500 reviews from completely dominating the score).
+
+Why it matters: It turns two separate numbers (Rating and Reviews) into one master number that ranks books from least to most popular.
+
+Success Category: The final target label for classification problems.
+
+How it was made: The continuous Popularity Score is cut into three bins: Low (below 4.8), Medium (4.8 to 5.5), and High (above 5.5).
+
+Why it matters: Instead of predicting a specific number like 5.23,  can train a model to predict simply "High," "Medium," or "Low" success. This is easier for business teams to understand and act upon.
